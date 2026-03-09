@@ -14,8 +14,40 @@
 
 </head>
 <body>
-    <main>
-        <section>
+    <!-- login section  -->
+    <main class="">
+        <section class=" w-[520px] mx-auto flex flex-col  space-y-6 text-center p-8">
+            <form action="" class="space-y-6 text-left" id="login-form">
+                <div class="mx-auto text-center">
+                    <img class="w-[20%] mx-auto mb-6" src="./assets/github-logo.png" alt="">
+                    <h1 class="text-2xl font-bold mb-1">Github Issue Tracker</h1>
+                    <p class="text-[#64748B]">Sign in to manage your issues</p>
+                </div>
+                <div class="space-y-4 text-left">
+                    <div >
+                        <label for="username" class="font-semibold ">Username</label>
+                        <br>
+                        
+                        <input type="text" name="username" id="username" placeholder="Enter Username" class="border-0 ml-6 mb-3">
+                        <p class="text-[#4A00FF]">Default: admin</p>
+                    </div>
+                    <div >
+                        <label for="Password" class="font-semibold">Password</label>
+                        <br>
+                        
+                        <input type="Password" name="Password" id="Password" placeholder="Enter Password" class="border-0 ml-6 mb-3">
+                        <p class="text-[#4A00FF]">Default: admin123</p>
+                    </div>
+                </div>
+                <button class="primary-btn w-full">Sign In</button>
+                <p class="text-center">OR</p>
+                <div class="text-center">
+                    <p class="mb-2 text-[#64748B]">Demo Credentials:</p>
+                    <p><span class="font-semibold">Username:</span> admin</p>
+                    <p><span class="font-semibold">Password:</span> admin123</p>
+                    
+                </div>
+            </form>
             
         </section>
     </main>
