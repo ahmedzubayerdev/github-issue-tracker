@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .primary-btn{
-    padding: 16px;
+    
     background-color: #4A00FF;
     color: #fff;
     border-radius: 8px;
