@@ -1,4 +1,16 @@
+const loadingSpinner = document.getElementById("loading-spinner")
+const allCards = document.getElementById('allcards');
+
+
+
+
 function loadIssues(){
+    
+    // showing spinner 
+    loadingSpinner.classList.remove("hidden");
+    loadingSpinner.classList.add("flex");
+    
+
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     fetch(url)
@@ -7,21 +19,21 @@ function loadIssues(){
             displayAllIssues(data)
             const issues = data.data;
             const count = issues.length;
+
+            // loading spinner remove 
+            loadingSpinner.classList.add("hidden");
+
             
             // issue count 
             document.getElementById("issue-count").innerText = count;
         } 
-            
 
         
 )};
 
 // display all issues
 function displayAllIssues(issues){
-        // allcard container 
-    const allCards = document.getElementById('allcards');
-    
-
+        
 
 
     
