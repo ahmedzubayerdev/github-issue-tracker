@@ -1,6 +1,7 @@
  
 const loadingSpinner = document.getElementById("loading-spinner");
 const allCards = document.getElementById("allcards");
+
 const tabButtons = document.querySelectorAll(".tab-btn");
 const search = document.getElementById("Search")
 
@@ -47,14 +48,26 @@ function renderIssues(tab) {
     if (tab === "open") filtered = issues.filter(i => i.status === "open");
     else if (tab === "closed") filtered = issues.filter(i => i.status === "closed");
 
+
+    // search value 
+     if (searchValue) {
+        filtered = filtered.filter(issue =>
+            issue.title.toLowerCase().includes(searchValue)
+        );
+    }
+
     document.getElementById("issue-count").innerText = filtered.length;
     allCards.innerHTML = "";
 
     filtered.forEach(issue => {
+
+        const highlightedTitle = highlightText(issue.title, searchValue);
+
+
         const date = new Date(issue.updatedAt);
         // Labels with dynamic color
         const labelHTML = issue.labels.map(label => {
-            let classes = "px-2 py-1 border rounded-2xl text-xl mr-1 "; 
+            let classes = "px-2 py-1 border rounded-2xl  mr-1 "; 
 
             switch(label.toLowerCase()){
                 case "bug":
@@ -93,10 +106,10 @@ function renderIssues(tab) {
                 <p>${priorityHTML}</p>
             </div>
             <div class="card-details">
-                <h2 class="card-title font-bold text-xl">${issue.title}</h2>
+                <h2 class="card-title font-bold text-xl">${highlightedTitle}</h2>
                 <p class="card-description text-gray-600 mt-2">${issue.description}</p>
             </div>
-            <div class="flex mt-2 gap-2">${labelHTML}</div>
+            <div class="flex mt-2 font-semibold text-sm">${labelHTML}</div>
             <div class="card-author mt-2 text-gray-500">
                 <p>${issue.author}</p>
                 <p>${date.toLocaleDateString()}</p>
@@ -173,6 +186,23 @@ tabButtons.forEach(btn => {
         renderIssues(tab);
     });
 });
+
+// highlight function 
+function highlightText(text, searchValue) {
+    if (!searchValue) return text;
+
+    const regex = new RegExp(`(${searchValue})`, "gi");
+    return text.replace(regex, `<span class="bg-red-300 ">$1</span>`);
+}
+
+    // search functionality 
+
+    let searchValue = "";
+
+    search.addEventListener("input", () => {
+            searchValue = search.value.toLowerCase();
+            renderIssues("all");
+}); 
 
 loadIssues();
 
