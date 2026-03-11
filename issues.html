@@ -22,7 +22,7 @@
                 <h1 class=" hidden md:block font-bold text-2xl visible"> Github Issues Tracker </h1>
             </div>
             <div class="text-right flex  items-center sm:text-left">
-                <input type="text" placeholder="Search issue..." class="  md:h-11 w-2xs border-0 " >
+                <input type="text" placeholder="Search issue..." class="  md:h-11 w-2xs border-0 " id="Search" >
                 <button class="primary-btn text-xs sm:py-3 px-4">+ New Issue</button>
             </div>
         </nav>
@@ -31,10 +31,10 @@
     <!-- main section  -->
     <main class="w-[90%] mx-auto ">
         <!-- tab section  -->
-        <div class="tab-contanier mt-14 p-6 flex items-start gap-2">
-            <button class="primary-btn px-3 py-2 w-28">All</button>
-            <button class="px-3 py-2 w-28">Open</button>
-            <button class="px-3 py-2 w-28">Closed</button>
+        <div class="tab-contanier mt-14 p-6 flex items-start gap-2 ">
+            <button class="tab-btn primary-btn px-3 py-2 w-28" data-tab="all">All</button>
+            <button class="tab-btn px-3 py-2 w-28" data-tab="open">Open</button>
+            <button class="tab-btn px-3 py-2 w-28" data-tab="closed">Closed</button>
         </div>
 
         <!-- issue count section  -->
@@ -74,8 +74,49 @@
 
 
 
-        
+        <!-- modal -->
+        <div id="issue-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+  
+            <div class="bg-white rounded-xl p-6 w-[500px] relative">
+    
 
+                <h2 id="modal-title" class="text-xl font-bold"></h2>
+                <div class="status-container flex justify-start items-center gap-3 ">
+                    <span id="modal-status" class="text-white ">status</span> 
+                    <p >opened by <span id="modal-open-assignee">assignee</span></p>
+                    <p id="modal-date">date here</p>
+                </div>
+                <div id="modal-label-container" class="label-container mt-6 flex justify-start">
+                    <p></p>
+                    <p></p>
+                </div>
+
+                <div>
+                    <p id="modal-description" class="my-3 text-gray-600"></p>
+                </div>
+                <div class="mt-4 flex  text-sm text-gray-500 text-left">
+                    <div class="w-[50%]">
+                        <p id="assignee"> Assignee:</p>
+                        <p id="modal-assignee" class="text-black"></p>
+
+                    </div>
+                    <div >
+                        <p>Priority:</p>
+                        <span id="modal-priority"></span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                        
+                    <button id="close-modal" class="px-3 py-2 text-xl primary-btn ">close</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        
     </main>
     <script src="./script.js"></script>
     <script src="./issues.js"></script>
